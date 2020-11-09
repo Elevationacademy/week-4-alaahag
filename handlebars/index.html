@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+</head>
+
+<body>
+    <script id="menu-template" type="text/x-handlebars-template">
+        <ul>
+          {{#each menu}}
+            {{#if socialNetwork}}
+            <li><a href="{{link}}">{{name}}</a></li>
+            {{/if}}
+          {{/each}}
+        </ul>
+      </script>
+
+      <div class="menu">
+      </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
