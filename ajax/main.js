@@ -69,3 +69,40 @@ const btn_click = function()
 };
 
 $("#btn_search").click(btn_click);
+
+
+
+
+// Google Books API Extension
+let neruoscienceComputerBooks = [];
+const eachBook_function = function(book)
+{
+  if (book.volumeInfo.categories != undefined)
+    if (book.volumeInfo.categories[0] === "Computers")
+      neruoscienceComputerBooks.push(book.volumeInfo.title);
+}
+
+
+const google_api_key = "AIzaSyDSqefB9VlxkmI8tXqjzsdab5roCN4SKT0";
+const google_url = "https://www.googleapis.com/books/v1/volumes?q=";
+const fetch_google_books = function (queryValue, startIndex, maxResults)
+{
+  $.ajax(
+  {
+      method: "GET",
+      url: google_url + queryValue + "&startIndex=" + startIndex + "&maxResults=" + maxResults + "&key=" + google_api_key,
+      success: function (data)
+      {
+        data.items.forEach(eachBook_function);
+        console.log(neruoscienceComputerBooks);
+      },
+      error: function (xhr, text, error)
+      {
+          console.log(text);
+      }
+  });
+};
+
+fetch_google_books("title:neuroscience",0,40);
+fetch_google_books("title:neuroscience",40,40);
+fetch_google_books("title:neuroscience",120,40);
